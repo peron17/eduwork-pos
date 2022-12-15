@@ -1,3 +1,6 @@
+@php
+    $currentRoute = \Request::route()->getName();
+@endphp
 <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
     <!-- Sidebar - Brand -->
@@ -71,17 +74,22 @@
             <span>Supplier</span></a>
     </li>
 
+    @php
+        $pengaturan = [
+            'unit.index'
+        ];
+    @endphp
     <li class="nav-item">
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseSetting"
+        <a class="nav-link <?= in_array($currentRoute, $pengaturan) ? '' : 'collapse' ?>" href="#" data-toggle="collapse" data-target="#collapseSetting"
             aria-expanded="true" aria-controls="collapseSetting">
             <i class="fas fa-fw fa-cog"></i>
             <span>Pengaturan</span>
         </a>
-        <div id="collapseSetting" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
+        <div id="collapseSetting" class="collapse <?= in_array($currentRoute, $pengaturan) ? 'show' : '' ?>" aria-labelledby="headingPages" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
                 <a class="collapse-item" href="">User</a>
                 <a class="collapse-item" href="">Metode Pembayaran</a>
-                <a class="collapse-item" href="">Unit</a>
+                <a class="collapse-item <?= $currentRoute == 'unit.index' ? 'active' : '' ?>" href="{{ route('unit.index') }}">Unit</a>
             </div>
         </div>
     </li>
