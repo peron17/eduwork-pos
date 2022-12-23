@@ -125,7 +125,7 @@
                 </a>
                 <a class="dropdown-item d-flex align-items-center" href="#">
                     <div class="dropdown-list-image mr-3">
-                        <img class="rounded-circle" src="img/undraw_profile_2.svg"
+                        <img class="rounded-circle" src="{{ asset('sb-admin-2/img/undraw_profile_2.svg') }}"
                             alt="...">
                         <div class="status-indicator"></div>
                     </div>
@@ -137,7 +137,7 @@
                 </a>
                 <a class="dropdown-item d-flex align-items-center" href="#">
                     <div class="dropdown-list-image mr-3">
-                        <img class="rounded-circle" src="img/undraw_profile_3.svg"
+                        <img class="rounded-circle" src="{{ asset('sb-admin-2/img/undraw_profile_3.svg') }}"
                             alt="...">
                         <div class="status-indicator bg-warning"></div>
                     </div>

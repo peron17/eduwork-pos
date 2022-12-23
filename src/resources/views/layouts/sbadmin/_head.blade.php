@@ -8,6 +8,8 @@
 
     <title>{{ config('app.name') }}</title>
 
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+
     <!-- Custom fonts for this template-->
     <link href="{{ asset('sb-admin-2/vendor/fontawesome-free/css/all.min.css') }}" rel="stylesheet" type="text/css">
     <link
@@ -20,5 +22,7 @@
 
     <!-- Custom styles for this template-->
     <link href="{{ asset('sb-admin-2/css/sb-admin-2.min.css') }}" rel="stylesheet">
+
+    <link rel="stylesheet" href="{{ asset('sb-admin-2/css/custom.css') }}">
     @stack('css')
 </head>

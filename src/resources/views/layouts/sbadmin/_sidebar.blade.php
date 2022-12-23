@@ -80,7 +80,7 @@
         ];
     @endphp
     <li class="nav-item">
-        <a class="nav-link <?= in_array($currentRoute, $pengaturan) ? '' : 'collapse' ?>" href="#" data-toggle="collapse" data-target="#collapseSetting"
+        <a class="nav-link <?= in_array($currentRoute, $pengaturan) ? '' : 'collapsed' ?>" href="#" data-toggle="collapse" data-target="#collapseSetting"
             aria-expanded="true" aria-controls="collapseSetting">
             <i class="fas fa-fw fa-cog"></i>
             <span>Pengaturan</span>
