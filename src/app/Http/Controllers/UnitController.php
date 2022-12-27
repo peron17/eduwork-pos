@@ -27,7 +27,7 @@ class UnitController extends Controller
             return DataTables::of($model)
                 ->addIndexColumn()
                 ->addColumn('action', function($model){
-                    return view('unit.partials.action', [
+                    return view('partials.action', [
                         'model' => $model,
                         'route' => 'unit'
                     ]);

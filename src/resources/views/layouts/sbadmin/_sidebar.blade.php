@@ -76,7 +76,8 @@
 
     @php
         $pengaturan = [
-            'unit.index'
+            'unit.index',
+            'payment-method.index',
         ];
     @endphp
     <li class="nav-item">
@@ -88,7 +89,7 @@
         <div id="collapseSetting" class="collapse <?= in_array($currentRoute, $pengaturan) ? 'show' : '' ?>" aria-labelledby="headingPages" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
                 <a class="collapse-item" href="">User</a>
-                <a class="collapse-item" href="">Metode Pembayaran</a>
+                <a class="collapse-item <?= $currentRoute == 'payment-method.index' ? 'active' : '' ?>" href="{{ route('payment-method.index') }}">Metode Pembayaran</a>
                 <a class="collapse-item <?= $currentRoute == 'unit.index' ? 'active' : '' ?>" href="{{ route('unit.index') }}">Unit</a>
             </div>
         </div>

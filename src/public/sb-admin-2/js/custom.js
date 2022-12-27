@@ -78,9 +78,10 @@ $('body').on('click', '.btn-modal', function(e) {
         },
         error: function(e) {
             var errors = e.responseJSON.errors;
+            $('body .error-message').remove();
             $.each(errors, function(key, value){
                 if ($('#error-message-' + key).length === 0) {
-                    form.find('input[name="name"]').after('<span class="error-message" id="error-message-'+ key +'">'+ value + '</span>');
+                    form.find('input[name="'+ key +'"]').after('<span class="error-message" id="error-message-'+ key +'">'+ value + '</span>');
                 }
             });
         },

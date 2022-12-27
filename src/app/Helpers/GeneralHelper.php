@@ -19,13 +19,13 @@ if (!function_exists('rupiahPrice')) {
 if (!function_exists('labeledStatus')) {
     function labeledStatus(int $status)
     {
-        $text = 'Inactive';
+        $text = 'Tidak Aktif';
         $class = 'bg-secondary';
         if ($status == 1) {
             $class = 'bg-primary';
-            $text = 'Active';
+            $text = 'Aktif';
         }
-        return "<span class=\"badge $class\">$text</span>";
+        return "<span class=\"badge text-white $class\">$text</span>";
     }
 }
 
