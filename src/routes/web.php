@@ -35,12 +35,8 @@ Route::middleware('auth')->group(function () {
     Route::resource('/payment-method', PaymentMethodController::class);
     Route::resource('/user', UserController::class);
 
-    Route::resource('/role', RoleController::class)->middleware('can:manage-role');
-    
-    Route::get('/permission', [PermissionController::class, 'index'])->name('permission.index');
-    Route::post('/permission', [PermissionController::class, 'store'])->name('permission.store');
-    Route::put('/permission/{id}', [PermissionController::class, 'update'])->name('permission.update');
-    Route::delete('/permission/{id}', [PermissionController::class, 'destroy'])->name('permission.destroy');
+    Route::resource('/role', RoleController::class)->middleware('can:manage-permission');
+    Route::resource('/permission', PermissionController::class)->middleware('can:manage-permission');
 });
 
 require __DIR__ . '/auth.php';

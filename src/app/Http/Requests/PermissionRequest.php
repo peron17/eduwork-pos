@@ -5,7 +5,7 @@ namespace App\Http\Requests;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Support\Facades\Auth;
 
-class UpdateRoleRequest extends FormRequest
+class PermissionRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,8 +24,14 @@ class UpdateRoleRequest extends FormRequest
      */
     public function rules()
     {
-        return [
-            'name' => 'required|string|max:255|unique:roles,name,' . $this->role->id
-        ];
+        if ($this->getMethod() == 'POST') {
+            return [
+                'name' => 'required|string|max:255|unique:permissions,name'
+            ];
+        } elseif ($this->getMethod() == 'PUT') {
+            return [
+                'name' => 'required|string|max:255|unique:permissions,name,' . $this->permission->id
+            ];
+        }
     }
 }

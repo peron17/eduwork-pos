@@ -3,16 +3,16 @@
 @section('content')
 <!-- Page Heading -->
 <div class="d-sm-flex align-items-center justify-content-between mb-4">
-    <h1 class="h3 mb-0 text-gray-800">User</h1>
+    <h1 class="h3 mb-0 text-gray-800">Permission</h1>
 </div>
 
 <div class="row">
     <!-- Card -->
-    <div class="col-xl-12 col-lg-12">
+    <div class="col-xl-8 col-lg-8">
         <div class="card shadow mb-4">
             <!-- Card Header - Dropdown -->
             <div class="card-header py-3 d-flex flex-row align-items-center justify-content-end">
-                <a href="{{ route('user.store') }}" class="btn btn-sm btn-primary btn-modal" title="Create User">
+                <a href="{{ route('permission.store') }}" class="btn btn-sm btn-primary btn-modal" title="Tambah Permission">
                     <span class="fa fa-plus"></span> Tambah Data
                 </a>
             </div>
@@ -24,7 +24,6 @@
                             <tr>
                                 <th>No.</th>
                                 <th>Nama</th>
-                                <th>Email</th>
                                 <th>Aksi</th>
                             </tr>
                         </thead>
@@ -49,18 +48,7 @@
                     <div class="form-group mb-3">
                         <label for="name">Nama</label>
                         <input type="text" name="name" class="form-control" id="name">
-                    </div>
-                    <div class="form-group mb-3">
-                        <label for="email">Email</label>
-                        <input type="email" name="email" class="form-control" id="email">
-                    </div>
-                    <div class="form-group mb-3">
-                        <label for="password">Password</label>
-                        <input type="password" name="password" class="form-control" id="password">
-                    </div>
-                    <div class="form-group mb-3">
-                        <label for="password-confirmation">Retype Password</label>
-                        <input type="password" name="password-confirmation" class="form-control" id="password-confirmation">
+                        <small class="font-italic text-center">Nama akan disimpan dalam bentuk lowercase dan spasi akan diganti dengan strip (-)</small>
                     </div>
                 </div>
                 <div class="modal-footer">
@@ -80,11 +68,10 @@ $(document).ready(function () {
     var datatable = $('#datatable').DataTable({
         processing: true,
         serverSide: true,
-        ajax: "{{ route('user.index') }}",
+        ajax: "{{ route('permission.index') }}",
         columns: [
             {data: 'DT_RowIndex', name: 'DT_RowIndex', orderable: false, searchable: false},
             {data: 'name', name: 'name'},
-            {data: 'email', name: 'email'},
             {data: 'action', name: 'action', orderable: false, searchable: false}
         ]
     });

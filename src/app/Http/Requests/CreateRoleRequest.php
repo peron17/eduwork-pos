@@ -14,7 +14,7 @@ class CreateRoleRequest extends FormRequest
      */
     public function authorize()
     {
-        return Auth::check() && Auth::user()->can('manage-role');
+        return Auth::check() && Auth::user()->can('manage-permission');
     }
 
     /**
