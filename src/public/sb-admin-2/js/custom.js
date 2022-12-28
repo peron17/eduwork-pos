@@ -74,6 +74,13 @@ $('body').on('click', '.btn-modal', function(e) {
                         'success'
                     )
                 }
+            } else {
+                console.log(data.error);
+                Swal.fire(
+                    'Gagal',
+                    data.error,
+                    'error'
+                )
             }
         },
         error: function(e) {
@@ -121,7 +128,7 @@ $('body').on('click', '.btn-delete', function(e){
                     } else {
                         Swal.fire(
                             'Gagal',
-                            'Data gagal dihapus',
+                            data.error,
                             'error'
                         )
                     }

@@ -2,8 +2,11 @@
 
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\PaymentMethodController;
+use App\Http\Controllers\PermissionController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\RoleController;
 use App\Http\Controllers\UnitController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -30,6 +33,14 @@ Route::middleware('auth')->group(function () {
 
     Route::resource('/unit', UnitController::class);
     Route::resource('/payment-method', PaymentMethodController::class);
+    Route::resource('/user', UserController::class);
+
+    Route::resource('/role', RoleController::class)->middleware('can:manage-role');
+    
+    Route::get('/permission', [PermissionController::class, 'index'])->name('permission.index');
+    Route::post('/permission', [PermissionController::class, 'store'])->name('permission.store');
+    Route::put('/permission/{id}', [PermissionController::class, 'update'])->name('permission.update');
+    Route::delete('/permission/{id}', [PermissionController::class, 'destroy'])->name('permission.destroy');
 });
 
 require __DIR__ . '/auth.php';
