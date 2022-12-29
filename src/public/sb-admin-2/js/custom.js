@@ -44,10 +44,12 @@ $('body').on('click', '.btn-modal', function(e) {
 /**
  * submit modal form
  */
+//  $(document).on('submit', '#modal form', function(e) {
  $('#modal form').submit(function(e) {
     e.preventDefault();
 
     var form = $(this);
+    console.log(form.serialize());
     var url = form.attr('action');
     var method = form.attr('method');
 
@@ -87,8 +89,12 @@ $('body').on('click', '.btn-modal', function(e) {
             var errors = e.responseJSON.errors;
             $('body .error-message').remove();
             $.each(errors, function(key, value){
+                console.log(key);
                 if ($('#error-message-' + key).length === 0) {
-                    form.find('input[name="'+ key +'"]').after('<span class="error-message" id="error-message-'+ key +'">'+ value + '</span>');
+                    form.find('#'+ key ).after('<span class="error-message" id="error-message-'+ key +'">'+ value + '</span>');
+                    // form.find('input[name="'+ key +'"]').after('<span class="error-message" id="error-message-'+ key +'">'+ value + '</span>');
+                    // checkbox
+                    // form.find('#checkbox-area').append('<span class="error-message" id="error-message-'+ key +'">'+ value + '</span>');
                 }
             });
         },

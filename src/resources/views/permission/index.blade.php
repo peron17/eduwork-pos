@@ -48,7 +48,7 @@
                     <div class="form-group mb-3">
                         <label for="name">Nama</label>
                         <input type="text" name="name" class="form-control" id="name">
-                        <small class="font-italic text-center">Nama akan disimpan dalam bentuk lowercase dan spasi akan diganti dengan strip (-)</small>
+                        <small class="d-block font-italic text-center">Nama akan disimpan dalam bentuk lowercase dan spasi akan diganti dengan strip (-)</small>
                     </div>
                 </div>
                 <div class="modal-footer">

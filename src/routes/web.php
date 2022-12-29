@@ -35,7 +35,15 @@ Route::middleware('auth')->group(function () {
     Route::resource('/payment-method', PaymentMethodController::class);
     Route::resource('/user', UserController::class);
 
-    Route::resource('/role', RoleController::class)->middleware('can:manage-permission');
+    Route::group(['middleware' => 'can:manage-permission'], function () {
+        Route::get('/role', [RoleController::class, 'index'])->name('role.index');
+        Route::post('/role', [RoleController::class, 'store'])->name('role.store');
+        Route::put('/role/{role}', [RoleController::class, 'update'])->name('role.update');
+        Route::delete('/role/{role}', [RoleController::class, 'destroy'])->name('role.destroy');
+        Route::get('/api/role/permission/{id?}', [RoleController::class, 'permission'])->name('role.permission');
+    });
+
+    
     Route::resource('/permission', PermissionController::class)->middleware('can:manage-permission');
 });
 

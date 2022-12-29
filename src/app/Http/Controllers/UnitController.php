@@ -2,14 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\CreateUnitRequest;
-use App\Http\Requests\UpdateUnitRequest;
+use App\Http\Requests\UnitRequest;
 use App\Models\Unit;
-use App\Services\UnitService;
+use App\Services\BaseService;
 use Illuminate\Http\Request;
-use DataTables;
-use Exception;
 use Illuminate\Http\Response;
+use Yajra\DataTables\DataTables;
 
 class UnitController extends Controller
 {
@@ -17,7 +15,7 @@ class UnitController extends Controller
 
     public function __construct()
     {
-        $this->service = new UnitService;
+        $this->service = new BaseService;
     }
 
     public function index(Request $request)
@@ -38,35 +36,28 @@ class UnitController extends Controller
         return view('unit.index');
     }
 
-    public function store(CreateUnitRequest $request)
+    public function store(UnitRequest $request)
     {
         if (!$request->ajax())
             return response(Response::$statusTexts[Response::HTTP_BAD_REQUEST], Response::HTTP_BAD_REQUEST);
 
         $validated = $request->validated();
-        if (!$this->service->create($validated))
-            return response()->json(['status'=>false, 'message'=>'Failed to save data']);
 
-        return response()->json(['status'=>true]);
+        return response()->json($this->service->create($validated, new Unit()));
     }
 
-    public function update(UpdateUnitRequest $request, Unit $unit)
+    public function update(UnitRequest $request, Unit $unit)
     {
         if (!$request->ajax())
             return response(Response::$statusTexts[Response::HTTP_BAD_REQUEST], Response::HTTP_BAD_REQUEST);
 
         $validated = $request->validated();
-        if (!$this->service->update($validated, $unit))
-            return response()->json(['status'=>false, 'message'=>'Failed to save data']);
 
-        return response()->json(['status'=>true]);
+        return response()->json($this->service->update($validated, $unit));
     }
 
     public function destroy(Unit $unit)
     {
-        if ($unit->delete())
-            return response()->json(['status'=>true]);
-     
-        return response()->json(['status'=>false]);
+        return response()->json($this->service->destroy($unit));
     }
 }

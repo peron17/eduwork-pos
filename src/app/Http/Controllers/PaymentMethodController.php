@@ -44,10 +44,8 @@ class PaymentMethodController extends Controller
             return response(Response::$statusTexts[Response::HTTP_BAD_REQUEST], Response::HTTP_BAD_REQUEST);
 
         $validated = $request->validated();
-        if (!$this->service->create($validated, new PaymentMethod()))
-            return response()->json(['status'=>false, 'message'=>'Failed to save data']);
 
-        return response()->json(['status'=>true]);
+        return response()->json($this->service->create($validated, new PaymentMethod()));
     }
 
     public function update(PaymentMethodRequest $request, PaymentMethod $paymentMethod)
@@ -56,17 +54,12 @@ class PaymentMethodController extends Controller
             return response(Response::$statusTexts[Response::HTTP_BAD_REQUEST], Response::HTTP_BAD_REQUEST);
 
         $validated = $request->validated();
-        if (!$this->service->update($validated, $paymentMethod))
-            return response()->json(['status'=>false, 'message'=>'Failed to save data']);
 
-        return response()->json(['status'=>true]);
+        return response()->json($this->service->update($validated, $paymentMethod));
     }
 
     public function destroy(PaymentMethod $paymentMethod)
     {
-        if ($paymentMethod->delete())
-            return response()->json(['status'=>true]);
-     
-        return response()->json(['status'=>false]);
+        return response()->json($this->service->destroy($paymentMethod));
     }
 }

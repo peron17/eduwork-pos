@@ -5,7 +5,7 @@ namespace App\Http\Requests;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Support\Facades\Auth;
 
-class UpdateUnitRequest extends FormRequest
+class UnitRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,8 +24,14 @@ class UpdateUnitRequest extends FormRequest
      */
     public function rules()
     {
-        return [
-            'name' => 'required|string|max:30|unique:units,name,'.$this->unit->id
-        ];
+        if ($this->getMethod() == 'POST') {
+            return [
+                'name' => 'required|string|max:30|unique:units,name'
+            ];
+        } else {
+            return [
+                'name' => 'required|string|max:30|unique:units,name,'.$this->unit->id
+            ];
+        }
     }
 }

@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\CreateRoleRequest;
-use App\Http\Requests\UpdateRoleRequest;
+use App\Http\Requests\RoleRequest;
 use App\Services\RoleService;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Spatie\Permission\Models\Permission;
 use Spatie\Permission\Models\Role;
 use Yajra\DataTables\DataTables;
 
@@ -37,11 +37,11 @@ class RoleController extends Controller
         }
 
         return view('role.index', [
-            'guards' => $this->service::GUARDS
+            'model' => $this->service::GUARDS
         ]);
     }
 
-    public function store(CreateRoleRequest $request)
+    public function store(RoleRequest $request)
     {
         if (!$request->ajax())
             return response(Response::$statusTexts[Response::HTTP_BAD_REQUEST], Response::HTTP_BAD_REQUEST);
@@ -51,7 +51,7 @@ class RoleController extends Controller
         return response()->json($this->service->create($validated, new Role()));
     }
 
-    public function update(UpdateRoleRequest $request, Role $role)
+    public function update(RoleRequest $request, Role $role)
     {
         if (!$request->ajax())
             return response(Response::$statusTexts[Response::HTTP_BAD_REQUEST], Response::HTTP_BAD_REQUEST);
@@ -64,5 +64,32 @@ class RoleController extends Controller
     public function destroy(Role $role)
     {
         return response()->json($this->service->destroy($role));
+    }
+
+    public function permission(int $id = null)
+    {
+        // listing all permissions
+        $permissions = Permission::orderBy('id')->pluck('name', 'id');
+        $permissionsX = [];
+        foreach ($permissions as $key => $value) {
+            $permissionsX[$key] = [
+                'name' => $value,
+                'checked' => false
+            ];
+        }
+
+        if ($id != null) {
+            $role = Role::findById($id);
+            $roles = $role->getAllPermissions()->toArray();
+            
+            if (!empty($roles)) {
+                foreach ($roles as $key => $value) {
+                    if (array_key_exists($value['id'], $permissionsX)) {
+                        $permissionsX[$value['id']]['checked'] = true;
+                    }
+                }
+            }
+        }
+        return json_encode($permissionsX);
     }
 }
