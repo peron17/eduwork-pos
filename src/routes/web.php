@@ -41,10 +41,10 @@ Route::middleware('auth')->group(function () {
         Route::put('/role/{role}', [RoleController::class, 'update'])->name('role.update');
         Route::delete('/role/{role}', [RoleController::class, 'destroy'])->name('role.destroy');
         Route::get('/api/role/permission/{id?}', [RoleController::class, 'permission'])->name('role.permission');
+
+        Route::resource('/permission', PermissionController::class);
     });
 
-    
-    Route::resource('/permission', PermissionController::class)->middleware('can:manage-permission');
 });
 
 require __DIR__ . '/auth.php';
