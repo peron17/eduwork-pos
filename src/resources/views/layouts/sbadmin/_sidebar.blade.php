@@ -1,3 +1,6 @@
+@php
+    $currentRoute = \Request::route()->getName();
+@endphp
 <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
     <!-- Sidebar - Brand -->
@@ -65,23 +68,46 @@
             <span>Pelanggan</span></a>
     </li>
 
+    @if (auth()->user()->can('manage-supplier'))
     <li class="nav-item">
         <a class="nav-link" href="charts.html">
             <i class="fas fa-fw fa-truck"></i>
             <span>Supplier</span></a>
     </li>
+    @endif
 
+    @php
+        $pengaturan = [
+            'unit.index',
+            'payment-method.index',
+            'user.index',
+            'permission.index',
+            'role.index',
+        ];
+    @endphp
     <li class="nav-item">
-        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseSetting"
+        <a class="nav-link <?= in_array($currentRoute, $pengaturan) ? '' : 'collapsed' ?>" href="#" data-toggle="collapse" data-target="#collapseSetting"
             aria-expanded="true" aria-controls="collapseSetting">
             <i class="fas fa-fw fa-cog"></i>
             <span>Pengaturan</span>
         </a>
-        <div id="collapseSetting" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
+        <div id="collapseSetting" class="collapse <?= in_array($currentRoute, $pengaturan) ? 'show' : '' ?>" aria-labelledby="headingPages" data-parent="#accordionSidebar">
             <div class="bg-white py-2 collapse-inner rounded">
-                <a class="collapse-item" href="">User</a>
-                <a class="collapse-item" href="">Metode Pembayaran</a>
-                <a class="collapse-item" href="">Unit</a>
+                @if (auth()->user()->can('manage-permission'))
+                    <a href="{{ route('role.index') }}" class="collapse-item <?= $currentRoute == 'role.index' ? 'active' : '' ?>">Role</a>
+                @endif
+                @if (auth()->user()->can('manage-permission'))
+                    <a href="{{ route('permission.index') }}" class="collapse-item <?= $currentRoute == 'permission.index' ? 'active' : '' ?>">Permission</a>
+                @endif
+                @if (auth()->user()->can('manage-user'))
+                    <a class="collapse-item <?= $currentRoute == 'user.index' ? 'active' : '' ?>" href="{{ route('user.index') }}">User</a>
+                @endif
+                @if (auth()->user()->can('manage-payment-method'))
+                    <a class="collapse-item <?= $currentRoute == 'payment-method.index' ? 'active' : '' ?>" href="{{ route('payment-method.index') }}">Metode Pembayaran</a>
+                @endif
+                @if (auth()->user()->can('manage-unit'))
+                    <a class="collapse-item <?= $currentRoute == 'unit.index' ? 'active' : '' ?>" href="{{ route('unit.index') }}">Unit</a>
+                @endif
             </div>
         </div>
     </li>

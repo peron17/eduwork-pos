@@ -22,26 +22,29 @@
 <!-- Logout Modal-->
 <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
 aria-hidden="true">
-<div class="modal-dialog" role="document">
-<div class="modal-content">
-    <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
-        <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">×</span>
-        </button>
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+                <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div>
+            <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                <a class="btn btn-primary" href="login.html">Logout</a>
+            </div>
+        </div>
     </div>
-    <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
-    <div class="modal-footer">
-        <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-        <a class="btn btn-primary" href="login.html">Logout</a>
-    </div>
-</div>
-</div>
 </div>
 
 <!-- Bootstrap core JavaScript-->
 <script src="{{ asset('sb-admin-2/vendor/jquery/jquery.min.js') }}"></script>
 <script src="{{ asset('sb-admin-2/vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+
+{{-- datatable --}}
+<script src="{{ asset('https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js') }}"></script>
 
 <!-- Core plugin JavaScript-->
 <script src="{{ asset('sb-admin-2/vendor/jquery-easing/jquery.easing.min.js') }}"></script>
@@ -52,7 +55,15 @@ aria-hidden="true">
 <!-- Page level plugins -->
 <script src="{{ asset('sb-admin-2/vendor/chart.js/Chart.min.js') }}"></script>
 
+{{-- Sweetalert --}}
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+{{-- custom script --}}
+<script src="{{ asset('sb-admin-2/js/custom.js') }}"></script>
+
 {{-- Vue --}}
-<script src="https://cdn.jsdelivr.net/npm/vue"></script>
+{{-- <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
+
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script> --}}
 
 @stack('script')
