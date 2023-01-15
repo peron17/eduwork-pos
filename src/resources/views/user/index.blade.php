@@ -55,12 +55,20 @@
                         <input type="email" name="email" class="form-control" id="email">
                     </div>
                     <div class="form-group mb-3">
+                        <label for="role">Role</label>
+                        <select name="role" id="role" class="form-control">
+                            @foreach ($role as $key => $value)
+                                <option value="{{ $key }}">{{ $value }}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                    <div class="form-group mb-3">
                         <label for="password">Password</label>
                         <input type="password" name="password" class="form-control" id="password">
                     </div>
                     <div class="form-group mb-3">
                         <label for="password-confirmation">Retype Password</label>
-                        <input type="password" name="password-confirmation" class="form-control" id="password-confirmation">
+                        <input type="password" name="password_confirmation" class="form-control" id="password-confirmation">
                     </div>
                 </div>
                 <div class="modal-footer">

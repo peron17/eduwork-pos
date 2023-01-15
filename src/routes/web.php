@@ -31,9 +31,9 @@ Route::middleware('auth')->group(function () {
 
     Route::get('/', [DashboardController::class, 'index'])->name('dashboard.index');
 
-    Route::resource('/unit', UnitController::class);
-    Route::resource('/payment-method', PaymentMethodController::class);
-    Route::resource('/user', UserController::class);
+    Route::resource('/unit', UnitController::class)->middleware('can:manage-unit');
+    Route::resource('/payment-method', PaymentMethodController::class)->middleware('can:manage-payment-method');
+    Route::resource('/user', UserController::class)->middleware('can:manage-user');
 
     Route::group(['middleware' => 'can:manage-permission'], function () {
         Route::get('/role', [RoleController::class, 'index'])->name('role.index');
