@@ -69,8 +69,8 @@
     </li>
 
     @if (auth()->user()->can('manage-supplier'))
-    <li class="nav-item">
-        <a class="nav-link" href="charts.html">
+    <li class="nav-item <?= $currentRoute == 'supplier.index' ? 'active' : '' ?>">
+        <a class="nav-link" href="{{ route('supplier.index') }}">
             <i class="fas fa-fw fa-truck"></i>
             <span>Supplier</span></a>
     </li>
