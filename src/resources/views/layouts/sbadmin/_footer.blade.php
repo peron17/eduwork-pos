@@ -66,4 +66,23 @@ aria-hidden="true">
 
 <script src="https://unpkg.com/axios/dist/axios.min.js"></script> --}}
 
+<script>
+$('#btn-logout').click(function(e){
+    e.preventDefault();
+
+    var url = $(this).attr('href');
+
+    $.ajax({
+        url: url,
+        method: 'post',
+        success: function(data) {
+            top.location.href = "{{ route('login') }}";
+        }, 
+        error: function(err) {
+            console.log(err);
+        }
+    });
+});
+</script>
+
 @stack('script')
