@@ -113,7 +113,7 @@
                 </h6>
                 <a class="dropdown-item d-flex align-items-center" href="#">
                     <div class="dropdown-list-image mr-3">
-                        <img class="rounded-circle" src="{{ asset('sb-admin-2/img/undraw_profile.svg') }}"
+                        <img class="rounded-circle" src="img/undraw_profile_1.svg"
                             alt="...">
                         <div class="status-indicator bg-success"></div>
                     </div>
@@ -125,7 +125,7 @@
                 </a>
                 <a class="dropdown-item d-flex align-items-center" href="#">
                     <div class="dropdown-list-image mr-3">
-                        <img class="rounded-circle" src="{{ asset('sb-admin-2/img/undraw_profile.svg') }}"
+                        <img class="rounded-circle" src="img/undraw_profile_2.svg"
                             alt="...">
                         <div class="status-indicator"></div>
                     </div>
@@ -137,7 +137,7 @@
                 </a>
                 <a class="dropdown-item d-flex align-items-center" href="#">
                     <div class="dropdown-list-image mr-3">
-                        <img class="rounded-circle" src="{{ asset('sb-admin-2/img/undraw_profile.svg') }}"
+                        <img class="rounded-circle" src="img/undraw_profile_3.svg"
                             alt="...">
                         <div class="status-indicator bg-warning"></div>
                     </div>
@@ -171,12 +171,12 @@
                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 <span class="mr-2 d-none d-lg-inline text-gray-600 small">Douglas McGee</span>
                 <img class="img-profile rounded-circle"
-                    src="{{ asset('sb-admin-2/img/undraw_profile.svg') }}">
+                    src="img/undraw_profile.svg">
             </a>
             <!-- Dropdown - User Information -->
             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
                 aria-labelledby="userDropdown">
-                <a class="dropdown-item" href="{{ route('profile.edit') }}">
+                <a class="dropdown-item" href="#">
                     <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
                     Profile
                 </a>
@@ -189,13 +189,10 @@
                     Activity Log
                 </a>
                 <div class="dropdown-divider"></div>
-                <form action="{{ route('logout') }}" method="POST">
-                    @csrf
-                    <button class="dropdown-item">
-                        <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
-                        Logout
-                    </button>
-                </form>
+                <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
+                    <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
+                    Logout
+                </a>
             </div>
         </li>
 

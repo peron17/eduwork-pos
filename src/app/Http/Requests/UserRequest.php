@@ -15,7 +15,8 @@ class UserRequest extends FormRequest
      */
     public function authorize()
     {
-        return Auth::check() && Auth::user()->can('manage-user');
+        return Auth::check();
+        // return Auth::check() && Auth::user()->can('manage-user');
     }
 
     /**
@@ -29,15 +30,18 @@ class UserRequest extends FormRequest
             return [
                 'name' => 'required|string|max:255',
                 'email' => 'required|email|unique:users,email',
-                'role' => 'required|exists:roles,id',
-                'password' => ['required', 'confirmed', Password::min(8)->numbers()->mixedCase()]
+                'password' => ['required', 'confirmed', Password::min(8)->numbers()->mixedCase()],
+                'role' => 'nullable|exists:roles,id',
+                'permissions' => 'sometimes|array'
             ];
         } elseif($this->getMethod() == 'PUT') {
             return [
                 'name' => 'required|string|max:255',
                 'email' => 'required|email|unique:users,email,' . $this->user->id,
-                'role' => 'required|exists:roles,id',
-                'password' => ['required', 'confirmed', Password::min(8)->numbers()->mixedCase()]
+                'role' => 'nullable|exists:roles,id',
+                'password' => ['nullable', 'confirmed', Password::min(8)->numbers()->mixedCase()],
+                'permissions' => 'sometimes|array',
+                'status' => 'required',
             ];
         }
     }

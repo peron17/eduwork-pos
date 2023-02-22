@@ -21,3 +21,21 @@ div.dataTables_wrapper div.dataTables_length select {
     border-radius: 4px;
     padding: 2px 4px;
 }
+
+.bg-login-image {
+    background: url('../img/login.jpg') !important;
+    background-position: bottom center !important;
+    background-size: cover !important;
+}
+
+span.message-alert {
+    font-size: .85rem;
+    color: #e74a3b;
+}
+
+hr {
+    margin-top: 1.5rem;
+    margin-bottom: 1.5rem;
+    border: 0;
+    border-top: 1px solid rgba(0,0,0,.1);
+}

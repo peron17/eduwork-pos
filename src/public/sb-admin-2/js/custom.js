@@ -109,6 +109,8 @@ $('body').on('click', '.btn-delete', function(e){
     e.preventDefault();
 
     var url = $(this).attr('href');
+    var isRedirected = $(this).hasClass('directed');
+    var redirect = $(this).data('redirect');
 
     Swal.fire({
         icon: 'warning',
@@ -124,13 +126,35 @@ $('body').on('click', '.btn-delete', function(e){
                 method: 'delete',
                 success: function(data){
                     if (data.status) {
-                        reloadDataTable();
-
-                        Swal.fire(
-                            'Sukses',
-                            'Data berhasil dihapus',
-                            'success'
-                        )
+                        if (isRedirected) {
+                            Swal.fire({
+                                title: 'Sukses',
+                                html: 'Data berhasil dihapus',
+                                timer: 1000,
+                                timerProgressBar: true,
+                                didOpen: () => {
+                                  Swal.showLoading()
+                                  const b = Swal.getHtmlContainer().querySelector('b')
+                                  timerInterval = setInterval(() => {
+                                    b.textContent = Swal.getTimerLeft()
+                                  }, 1000)
+                                },
+                                willClose: () => {
+                                  clearInterval(timerInterval)
+                                }
+                            }).then((result) => {
+                                window.location = redirect;
+                            });
+                            
+                        } else {
+                            reloadDataTable();
+    
+                            Swal.fire(
+                                'Sukses',
+                                'Data berhasil dihapus',
+                                'success'
+                            )
+                        }
                     } else {
                         Swal.fire(
                             'Gagal',

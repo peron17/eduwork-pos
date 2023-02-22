@@ -1,7 +1,9 @@
 <?php
 namespace App\Services;
 
+use App\Models\User;
 use Illuminate\Database\Eloquent\Model;
+use Spatie\Permission\Models\Permission;
 
 class PermissionService extends BaseService
 {
@@ -34,5 +36,42 @@ class PermissionService extends BaseService
         }
 
         return $this->response();
+    }
+
+    public static function groupListing(User $user = null): array
+    {
+        $list = [];
+
+        $permissions = Permission::orderBy('id')->pluck('name');
+        
+        $allowed = [];
+        if ($user) {
+            $allowed = $user->getPermissionNames()->toArray();
+        }
+        
+        foreach ($permissions as $value) {
+            $explode = explode('.', $value);
+            $group = ucwords($explode[0]);
+            array_shift($explode);
+            $name = ucwords(implode(' ', str_replace('-', ' ', $explode)));
+
+            $checked = in_array($value, $allowed);
+
+            if (!array_key_exists($group, $list)) {
+                $list[$group] = [
+                    $value => [
+                        'name' => $name,
+                        'checked' => $checked
+                    ]
+                ];
+            } else {
+                $list[$group][$value] = [
+                    'name' => $name,
+                    'checked' => $checked
+                ];
+            }
+        }
+
+        return $list;
     }
 }

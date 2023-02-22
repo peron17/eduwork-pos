@@ -38,6 +38,7 @@ class UnitController extends Controller
 
     public function store(UnitRequest $request)
     {
+        dd($request->all());
         if (!$request->ajax())
             return response(Response::$statusTexts[Response::HTTP_BAD_REQUEST], Response::HTTP_BAD_REQUEST);
 

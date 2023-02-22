@@ -21,10 +21,6 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
-
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
@@ -34,7 +30,7 @@ Route::middleware('auth')->group(function () {
 
     Route::resource('/unit', UnitController::class)->middleware('can:manage-unit');
     Route::resource('/payment-method', PaymentMethodController::class)->middleware('can:manage-payment-method');
-    Route::resource('/user', UserController::class)->middleware('can:manage-user');
+    Route::resource('/user', UserController::class);
 
     Route::resource('/supplier', SupplierController::class)->middleware('can:manage-supplier');
 
@@ -48,6 +44,15 @@ Route::middleware('auth')->group(function () {
         Route::resource('/permission', PermissionController::class);
     });
 
+    Route::get('/sales', function () {})->name('sales.index');
+    Route::get('/purchase', function () {})->name('purchase.index');
+    Route::get('/product', function () {})->name('product.index');
+    Route::get('/stock', function () {})->name('stock.index');
+    Route::get('/adjustment', function () {})->name('adjustment.index');
+});
+
+Route::get('/test', function () {
+    return view('dashboard.index');
 });
 
 require __DIR__ . '/auth.php';
