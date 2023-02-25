@@ -11,4 +11,8 @@ return [
     'delete user' => 'Hapus Pengguna',
     'block' => 'Blokir Pengguna',
     'reset password' => 'Ganti Password',
+    'list unit' => 'Daftar Satuan',
+    'create unit' => 'Tambah Satuan',
+    'edit unit' => 'Edit Satuan',
+    'delete unit' => 'Hapus Satuan',
 ];

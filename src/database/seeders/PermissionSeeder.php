@@ -20,6 +20,10 @@ class PermissionSeeder extends Seeder
             'user.create',
             'user.reset-password',
             'user.block',
+            'unit.index',
+            'unit.create',
+            'unit.edit',
+            'unit.delete',
         ];
 
         foreach ($permissions as $permission) {

@@ -5,11 +5,12 @@ return [
     'name' => 'Nama',
     'email' => 'Email',
     'password' => 'Password',
-    'retype password' => 'Retype Password',
+    'retype password' => 'Ulangi Password',
     'role' => 'Role',
     'profile' => 'Profil',
     'permission' => 'Permission',
     'status' => 'Status',
     'active' => 'Aktif',
     'inactive' => 'Tidak Aktif',
+    'reset password' => 'Ganti Password',
 ];

@@ -11,4 +11,5 @@ return [
     'stock' => 'Stok',
     'adjustment_stock' => 'Penyesuaian Stok',
     'product' => 'Produk',
+    'edit profile' => 'Edit Profil',
 ];
