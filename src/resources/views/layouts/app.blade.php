@@ -118,6 +118,7 @@ $appName = config('app.name', 'Peron POS');
 
     @stack('script')
     
+    @include('layouts.partial.status')
 </body>
 
 </html>
